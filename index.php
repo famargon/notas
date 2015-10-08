@@ -3,6 +3,12 @@
    <title>Mis notas</title>
 </head>
 <body>
+<?php 
+	session_start();
+	if($_SESSION['retry']){
+		echo "Usuario o contraseña incorrectos";
+	}	
+?>
 <FORM ACTION="loginUser.php" METHOD="POST" accept-charset=utf-8>
 <BR>Usuario:<BR>
 <INPUT TYPE="text" NAME="userName">

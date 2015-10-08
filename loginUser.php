@@ -1,6 +1,6 @@
 <?php
 		session_start();
-                
+                $_SESSION['retry']=False;
 		if(!$enlace = mysql_connect('localhost','root','123456')){
                     echo 'No pudo conectarse a mysql';
                     exit;
