@@ -3,8 +3,12 @@
    <title>Mis notas</title>
 </head>
 <body>
-<H1>Sistema de notas de Fabian</H1>
+<H1>Sistema de notas</H1>
 <H2>Notas personales</H2>
+<?php 
+	session_start();
+	$user=$_SESSION['user'];
+	echo "									Login as ",$user;?>
 <FORM ACTION="procesaNotas.php" METHOD="POST" accept-charset=utf-8>
 <BR>Nueva nota
 <INPUT TYPE="text" NAME="notaNueva">
@@ -20,7 +24,7 @@
 <INPUT TYPE="submit" NAME="boton" VALUE="Buscar"><BR>
 
 
-<H2>Notas públicas</H2>
+<H2>Notas publicas</H2>
 
 <BR>Nueva nota
 <INPUT TYPE="text" NAME="notaNuevaGlobal">
