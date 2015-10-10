@@ -35,10 +35,10 @@
 
 		$nota=$_POST['notaNueva'];	
 	
-		$sqlInsert="insert into notas (id_notas,valor,user) values ('$nuevoID','$nota','$user')";
+		$sqlInsert="insert into notas (id_notas,valor,user,public) values ('$nuevoID','$nota','$user',0)";
 		$resultadoInsert = mysql_query($sqlInsert,$enlace);
 	
-		$sqlSelect="select * from notas where user='$user' order by id_notas desc";
+		$sqlSelect="select * from notas where user='$user' and public=0 order by id_notas desc";
 		$resultadoSelect=mysql_query($sqlSelect,$enlace);
 		
 		while($fila=mysql_fetch_array($resultadoSelect,MYSQL_NUM)){
@@ -63,7 +63,7 @@
         	    exit;
         	}
 		
-		$sqlSelect="select * from notas where user= '$user' order by id_notas desc";
+		$sqlSelect="select * from notas where user= '$user' and public=0 order by id_notas desc";
         	$resultadoSelect=mysql_query($sqlSelect,$enlace);
 
         	while($fila=mysql_fetch_array($resultadoSelect,MYSQL_NUM)){
@@ -85,7 +85,7 @@
                 }
 		
 		$palabro=$_POST['palabro'];	
-                $sqlSelect="select * from notas where user='$user' and valor like '%$palabro%' order by id_notas desc";
+                $sqlSelect="select * from notas where user='$user' and public=0 and valor like '%$palabro%' order by id_notas desc";
                 $resultadoSelect=mysql_query($sqlSelect,$enlace);
 		
 		if(mysql_num_rows($resultadoSelect)!=0){
@@ -140,10 +140,10 @@
 
 		$nota=$_POST['notaNuevaGlobal'];	
 	
-		$sqlInsert="insert into notas (id_notas,valor,user) values ('$nuevoID','$nota','$user')";
+		$sqlInsert="insert into notas (id_notas,valor,user,public) values ('$nuevoID','$nota','$user',1)";
 		$resultadoInsert = mysql_query($sqlInsert,$enlace);
 	
-		$sqlSelect="select * from notas order by id_notas desc";
+		$sqlSelect="select * from notas where public=1 order by id_notas desc";
 		$resultadoSelect=mysql_query($sqlSelect,$enlace);
 		echo "Usuario, Nota<br>";
 		while($fila=mysql_fetch_array($resultadoSelect,MYSQL_NUM)){
@@ -168,7 +168,7 @@
         	    exit;
         	}
 		
-		$sqlSelect="select * from notas order by id_notas desc";
+		$sqlSelect="select * from notas where public=1 order by id_notas desc";
         	$resultadoSelect=mysql_query($sqlSelect,$enlace);
 		echo "Usuario, Nota<br>";
         	while($fila=mysql_fetch_array($resultadoSelect,MYSQL_NUM)){
@@ -190,7 +190,7 @@
                 }
 		
 		$palabro=$_POST['palabroGlobal'];	
-                $sqlSelect="select * from notas where valor like '%$palabro%' order by id_notas desc";
+                $sqlSelect="select * from notas where public=1 and valor like '%$palabro%' order by id_notas desc";
                 $resultadoSelect=mysql_query($sqlSelect,$enlace);
 		
 		if(mysql_num_rows($resultadoSelect)!=0){

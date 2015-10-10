@@ -1,5 +1,14 @@
 <?php 
 session_start();
+		if(!$enlace = mysql_connect('localhost','root','123456')){
+                    echo 'No pudo conectarse a mysql';
+                    exit;
+                }
+                if (!mysql_select_db('notasDB', $enlace)) {
+                    echo 'No pudo seleccionar la base de datos';
+                    exit;
+                }
+
                         $user=$_POST['userName'];
                         $sqlSelect="select * from users where name='$user'";
                         $resultadoSelect=mysql_query($sqlSelect,$enlace);
